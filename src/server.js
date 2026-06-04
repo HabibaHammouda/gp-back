@@ -29,3 +29,15 @@ app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
   simulation.start();
 });
+
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://neuropyGP.vercel.app' // your actual Vercel URL
+];
+
+app.use(cors({
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) callback(null, true);
+    else callback(new Error('Not allowed by CORS'));
+  }
+}));

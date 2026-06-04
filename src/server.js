@@ -30,14 +30,25 @@ app.listen(PORT, () => {
   simulation.start();
 });
 
-const allowedOrigins = [
-  'http://localhost:5173',
-  'https://gp-front-9abbxv1vv-habibas-projects-e7971660.vercel.app/dashboard'
-];
+// const allowedOrigins = [
+//   'http://localhost:5173',
+//   'https://gp-front-9abbxv1vv-habibas-projects-e7971660.vercel.app/dashboard'
+// ];
+
+// app.use(cors({
+//   origin: (origin, callback) => {
+//     if (!origin || allowedOrigins.includes(origin)) callback(null, true);
+//     else callback(new Error('Not allowed by CORS'));
+//   }
+// }));
 
 app.use(cors({
   origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) callback(null, true);
-    else callback(new Error('Not allowed by CORS'));
+    // Allow localhost and all vercel.app deployments
+    if (!origin || origin.includes('localhost') || origin.includes('vercel.app')) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
   }
 }));

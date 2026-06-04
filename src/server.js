@@ -32,7 +32,7 @@ app.listen(PORT, () => {
 
 const allowedOrigins = [
   'http://localhost:5173',
-  'https://neuropyGP.vercel.app' // your actual Vercel URL
+  'https://gp-front-9abbxv1vv-habibas-projects-e7971660.vercel.app/dashboard'
 ];
 
 app.use(cors({
